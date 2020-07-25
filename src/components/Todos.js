@@ -11,7 +11,7 @@ class Todos extends React.Component {
             todos: [
                 {
                     id: 1,
-                    task: 'Get up',
+                    task: 'Code',
                     completed: false
                 },
                 {
@@ -25,40 +25,51 @@ class Todos extends React.Component {
                     completed: false
                 }
             ],
-            search: ''
+            search: '',
+            newTask: '',
         }
-
-        this.mySearchCallback = this.mySearchCallback.bind(this);
-        this.addTodoCallback = this.addTodoCallback.bind(this);
-
+        this.searchInput = this.searchInput.bind(this);
+        this.addTask = this.addTask.bind(this);
         }
-    mySearchCallback = (searchMsg) => {
+    
+    markComplete = (id) => {
         this.setState({
-            search: searchMsg
+            todos: this.state.todos.map(todo => {
+                if(todo.id === id){
+                    todo.completed = !todo.completed
+                }
+                return todo;
+            })
+        });
+        
+    }
+
+    searchInput(toSearch) {
+        this.setState({
+            search: toSearch
         })
     }
-    addTodoCallback = (newTask) => {
-        const addNewTask = {
-            id: Date.now(),
-            task: newTask,
-            completed: false
-        };
+    
+    addTask = (newTask) => {
         this.setState({
-            todos: [...this.state.todos, addNewTask]
+            todos: [...this.state.todos, newTask]
         });
     }
-
+    
     render() {
+        let todos = this.state.todos;
         return (
-            <center>
+            <div className="text-center mx-auto mt-5">
                 <Clock />
-                <SearchBar mySearch={this.mySearchCallback}/>
-                <TodoList todos={this.state.todos} mySearch={this.state.search} />
-                <br/>
-                <CreateTodo addTodo={this.addTodoCallback}/>
-                <br/>
+                <div className="border mx-24 mt-4 py-6">
+                    <SearchBar searchInput={this.searchInput}/>
+                    <div className="text-left mx-12">
+                        <TodoList todos={todos} markComplete={this.markComplete} search={this.state.search}/>
+                        <CreateTodo addTask={this.addTask}/>
+                    </div>
+                </div>
                 
-            </center>
+            </div>
         );
     }
     

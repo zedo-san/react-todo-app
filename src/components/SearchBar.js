@@ -4,23 +4,24 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchInput: props.searchInput,
             toSearch: ''
         }
-        this.handleSearch = this.handleSearch.bind(this);
-        
+        this.handleChange = this.handleChange.bind(this)
     }
-    handleSearch(e) {
-        this.setState({toSearch: e.target.value}, () => this.sendData())
-        
-    }
-    sendData = () => {
-        this.props.mySearch(this.state.toSearch);
+    handleChange(e) {
+        this.setState({
+            toSearch: e.target.value
+        }, () => {
+            this.state.searchInput(this.state.toSearch)
+        })
     }
     render() {
         return (
-            <div className="SearchBar">
-                <input type="text" placeholder="Search" onChange={this.handleSearch}/> 
-                
+            <div>
+                <input type="text" 
+                        className="border rounded-md border-gray-400 px-3 py-1 focus:border-purple-500" 
+                        placeholder="Search" onChange={(e) => this.handleChange(e)}/> 
             </div>
         );
     }

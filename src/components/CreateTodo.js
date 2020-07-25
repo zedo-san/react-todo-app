@@ -1,38 +1,32 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
 
 
 class CreateTodo extends React.Component{
     constructor(props) {
         super(props)
-        this.state = {
-            taskInput: ''
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
-        this.sendNewTodo = this.sendNewTodo.bind(this);
-
+        this.state = {};
+        this.taskInput = React.createRef(); 
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange(event) {
-        this.setState({
-            taskInput: event.target.value
-        });
-    }
-    handleTodoSubmit(e) {
+    handleSubmit(e){
+        let newTodo = {
+            id: Date.now(),
+            task: this.taskInput.current.value,
+            completed: false
+        }
+        this.props.addTask(newTodo);
         e.preventDefault();
-        this.sendNewTodo();
-        
     }
-    sendNewTodo = () => {
-        this.props.addTodo(this.state.taskInput);
-    }
+    
     render() {
-        
         return (
-            <form onSubmit={this.sendNewTodo}>
-                <input type="text" placeholder="Add Task ..." onChange={this.handleChange}/>
-                <button type="submit">Add</button>
+            <form onSubmit={this.handleSubmit} className="mt-1 flex">
+                <input type="text" 
+                        className="border px-3 py-1 w-2/3"
+                        placeholder="Add Task ..." ref={this.taskInput} />
+                <button type="submit" 
+                        className="bg-purple-600 text-white px-2 py-1 rounded-sm ml-2 ">Add</button>
             </form>
         );
     }
