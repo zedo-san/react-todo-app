@@ -61,7 +61,7 @@ class Todos extends React.Component {
         return (
             <div className="text-center mx-auto mt-5">
                 <Clock />
-                <div className="border mx-24 mt-4 py-6">
+                <div className="border mx-24 mt-4 py-6 max-w-xs mx-auto">
                     <SearchBar searchInput={this.searchInput}/>
                     <div className="text-left mx-12">
                         <TodoList todos={todos} markComplete={this.markComplete} search={this.state.search}/>
