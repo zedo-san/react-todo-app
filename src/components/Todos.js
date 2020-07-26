@@ -55,16 +55,23 @@ class Todos extends React.Component {
             todos: [...this.state.todos, newTask]
         });
     }
+    deleteTodo = (id) => {
+        this.setState({
+            todos: this.state.todos.filter( function(todo){
+                return todo.id !== id
+            })
+        })
+    }
     
     render() {
         let todos = this.state.todos;
         return (
-            <div className="text-center mx-auto mt-5">
+            <div className="text-center mt-5">
                 <Clock />
                 <div className="border mx-24 mt-4 py-6 max-w-xs mx-auto">
                     <SearchBar searchInput={this.searchInput}/>
                     <div className="text-left mx-12">
-                        <TodoList todos={todos} markComplete={this.markComplete} search={this.state.search}/>
+                        <TodoList todos={todos} markComplete={this.markComplete} search={this.state.search} deleteTodo={this.deleteTodo}/>
                         <CreateTodo addTask={this.addTask}/>
                     </div>
                 </div>

@@ -23,13 +23,13 @@ class CreateTodo extends React.Component{
     
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className="mt-1 flex">
+            <form onSubmit={this.handleSubmit} className="mt-2 ml-3 flex">
                 <input type="text" 
                         className="border px-3 py-1 w-2/3"
                         placeholder="Add Task ..." ref={this.taskInput} 
                         id='taskInput'/>
                 <button type="submit" 
-                        className="bg-purple-600 text-white px-2 py-1 rounded-sm ml-2 ">Add</button>
+                        className="bg-purple-600 text-white px-2 py-1 rounded-sm ml-2">Add</button>
             </form>
         );
     }

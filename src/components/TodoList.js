@@ -24,14 +24,13 @@ class TodoList extends React.Component {
         }
     }
     
+    
     render() {
         const todos = this.handleTodos();
         return (
             <div className="mt-3">
                 <h3 className="text-2xl font-bold text-center">Tasks (<span className="text-purple-600">{this.props.todos.length > 0 ? this.props.todos.length : 0}</span>)</h3>
 
-                
-                <div className="">
                 {todos.map( todo => {
                     return <TodoItem  
                                 key={todo.id} 
@@ -39,15 +38,11 @@ class TodoList extends React.Component {
                                 task={todo.task} 
                                 completed={todo.completed}
                                 markComplete = {this.state.markComplete} 
+                                deleteTodo = {this.props.deleteTodo}
+                                
                             />            
                 })}
-                </div>
-                
-              
 
-
-
-                   
             </div>
         )
     }
