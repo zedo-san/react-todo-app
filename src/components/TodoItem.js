@@ -21,7 +21,7 @@ function TodoItem(props) {
                     </div>
                
                     <span className={getClass()} style={getStyle()}>{props.task}</span>
-                    <button className="col-span-1 text-red-700" onClick={() => props.deleteTodo(props.id)}>x</button>
+                    <button className="col-span-1 text-purple-500" onClick={() => props.deleteTodo(props.id)}>x</button>
             </div>
             
       

@@ -28,7 +28,7 @@ class Todos extends React.Component {
             ],
             search: '',
             newTask: '',
-            isLoggedIn: false
+            isLoggedIn: true
         }
         this.searchInput = this.searchInput.bind(this);
         this.addTask = this.addTask.bind(this);
