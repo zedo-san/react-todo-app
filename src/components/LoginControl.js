@@ -18,17 +18,24 @@ class LoginControl extends React.Component{
 
 function LogoutButton(props) {
     return(
-        <div className="grid grid-cols-2">
-            <span className="text-right mr-3">Welcome</span>
-            <button onClick={props.handleLogout} className="text-left">| <span className="underline text-purple-500 ml-3">Logout</span></button>
+        <div>
+            <div className="grid grid-cols-2">
+                <span className="text-right mr-3">Welcome</span>
+                <button onClick={props.handleLogout} className="text-left">| <span className="underline text-purple-500 ml-3">Logout</span></button>
+            </div>
         </div>
     )
 }
 function LoginButton(props) {
     return(
-        <div className="grid grid-cols-2">
-            <span className="text-right mr-3">You are not logged in</span>
-            <button onClick={props.handleLogin} className="text-left">| <span className="underline text-purple-500 ml-3">Login</span></button>
+        <div>
+            <div className="grid grid-cols-2 text-center">
+                <span className="text-right mr-3">You are not logged in</span>
+                <button onClick={props.handleLogin} className="text-left">
+                    | <span className="underline text-purple-500 ml-3">Login</span>
+                </button>
+            </div>
+            
         </div>
     )
 }

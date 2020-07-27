@@ -90,7 +90,11 @@ class Todos extends React.Component {
             <div className="text-center mt-5">
                 <Clock />
                 <LoginControl isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+                <div className="mt-3 text-center">
+                    <h1 className="text-4xl font-mono text-purple-700 font-bold max-w-xs mx-auto shadow-sm">Todo List App</h1>
+                </div>
                 {this.state.isLoggedIn ? todoapp : null}
+                
                 
             </div>
         );
