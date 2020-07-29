@@ -9,9 +9,9 @@ class CreateTodo extends React.Component{
         this.state = {
             taskInput: ''
         };
+        this.taskInput = React.createRef();
         this.handleChange = this.handleChange.bind(this);
         this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
-        this.sendNewTodo = this.sendNewTodo.bind(this);
 
     }
     handleChange(event) {
@@ -20,18 +20,16 @@ class CreateTodo extends React.Component{
         });
     }
     handleTodoSubmit(e) {
-        e.preventDefault();
-        this.sendNewTodo();
-        
-    }
-    sendNewTodo = () => {
         this.props.addTodo(this.state.taskInput);
+        this.taskInput = '';
+        e.preventDefault();
+        
     }
     render() {
         
         return (
-            <form onSubmit={this.sendNewTodo}>
-                <input type="text" placeholder="Add Task ..." onChange={this.handleChange}/>
+            <form onSubmit={(e) => this.handleTodoSubmit(e)}>
+                <input type="text" placeholder="Add Task ..." onChange={this.handleChange} ref={this.taskInput}/>
                 <button type="submit">Add</button>
             </form>
         );
